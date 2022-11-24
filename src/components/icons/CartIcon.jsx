@@ -1,4 +1,6 @@
-export const CartIcon = () => {
+import React from "react";
+
+export const CartIcon = React.memo(() => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -15,4 +17,4 @@ export const CartIcon = () => {
       />
     </svg>
   );
-};
+});
