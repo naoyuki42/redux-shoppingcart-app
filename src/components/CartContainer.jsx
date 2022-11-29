@@ -1,10 +1,12 @@
-import React, { useCallback } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import CartItem from "./CartItem";
+import { clearCart } from "../features/cart/CartSlice";
 
 const CartContainer = React.memo(() => {
   const { amount, cartItems, total } = useSelector((state) => state.cart);
-  const clearCart = useCallback(() => {}, []);
+  const dispatch = useDispatch();
+
   return (
     <section className="cart">
       <header>
@@ -26,7 +28,10 @@ const CartContainer = React.memo(() => {
                 合計：<span>{total}円</span>
               </h4>
             </div>
-            <button className="btn clear-btn" onClick={clearCart()}>
+            <button
+              className="btn clear-btn"
+              onClick={() => dispatch(clearCart())}
+            >
               全削除
             </button>
           </footer>
