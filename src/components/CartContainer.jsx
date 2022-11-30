@@ -15,28 +15,23 @@ const CartContainer = React.memo(() => {
       {amount < 1 ? (
         <p className="empty-cart">何も入ってません…</p>
       ) : (
-        <>
-          <div>
-            {cartItems.map((item) => {
-              return <CartItem key={item.id} {...item} />;
-            })}
-          </div>
-          <footer>
-            <hr />
-            <div className="cart-total">
-              <h4>
-                合計：<span>{total}円</span>
-              </h4>
-            </div>
-            <button
-              className="btn clear-btn"
-              onClick={() => dispatch(clearCart())}
-            >
-              全削除
-            </button>
-          </footer>
-        </>
+        <div>
+          {cartItems.map((item) => {
+            return <CartItem key={item.id} {...item} />;
+          })}
+        </div>
       )}
+      <footer>
+        <hr />
+        <div className="cart-total">
+          <h4>
+            合計：<span>{total}円</span>
+          </h4>
+        </div>
+        <button className="btn clear-btn" onClick={() => dispatch(clearCart())}>
+          全削除
+        </button>
+      </footer>
     </section>
   );
 });
