@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { PlusIcon } from "./icons/PlusIcon";
 import { MinusIcon } from "./icons/MinusIcon";
 import { useDispatch } from "react-redux";
-import { removeItem } from "../features/cart/CartSlice";
+import {
+  removeItem,
+  increaseItem,
+  decreaseItem,
+} from "../features/cart/CartSlice";
 
 const CartItem = React.memo(({ id, img, title, price, amount }) => {
   const dispatch = useDispatch();
+  const onClickDecrease = useCallback(() => {
+    amount === 1 ? dispatch(removeItem(id)) : dispatch(decreaseItem(id));
+  }, [amount, dispatch, id]);
 
   return (
     <article className="cart-item">
@@ -18,11 +25,14 @@ const CartItem = React.memo(({ id, img, title, price, amount }) => {
         </button>
       </div>
       <div>
-        <button className="amount-btn">
+        <button
+          className="amount-btn"
+          onClick={() => dispatch(increaseItem(id))}
+        >
           <PlusIcon />
         </button>
         <p className="amount">{amount}</p>
-        <button className="amount-btn">
+        <button className="amount-btn" onClick={() => onClickDecrease()}>
           <MinusIcon />
         </button>
       </div>
