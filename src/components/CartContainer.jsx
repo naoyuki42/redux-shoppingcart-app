@@ -4,7 +4,7 @@ import CartItem from "./CartItem";
 import { clearCart } from "../features/cart/CartSlice";
 
 const CartContainer = React.memo(() => {
-  const { amount, cartItems, total } = useSelector((state) => state.cart);
+  const { cartItems, amount, total } = useSelector((store) => store.cart);
   const dispatch = useDispatch();
 
   return (
